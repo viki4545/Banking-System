@@ -43,7 +43,7 @@ const Signup = ({ accountLoginLink, userType, linkType, navigationLink }) => {
               style={{
                 height: "100%",
                 marginTop: "3.5rem",
-                marginBottom: "10rem",
+                marginBottom: "20rem",
               }}
             >
               <div

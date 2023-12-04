@@ -48,7 +48,7 @@ const Login = ({
               style={{
                 height: "100%",
                 marginTop: "5rem",
-                marginBottom: "18rem",
+                marginBottom: "25rem",
               }}
             >
               <div

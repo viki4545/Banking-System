@@ -161,7 +161,7 @@ const TransactionPage = () => {
             <tbody style={{ maxHeight: "90%", overflowY: "scroll" }}>
               {transactionList?.map((data, idx) => (
                 <tr>
-                  <td>{data?.id}</td>
+                  <td>{idx + 1}</td>
                   <td>{data?.user_id}</td>
                   <td>{data?.amount}</td>
                   <td

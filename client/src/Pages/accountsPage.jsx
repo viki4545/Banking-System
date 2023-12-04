@@ -3,17 +3,12 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import axios from "axios";
 
-import {
-  createSearchParams,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 const AccountsPage = () => {
   const [accounts, setAccounts] = useState([]);
   const [transHistory, setTransHistory] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
   const containerStyle = {
     height: "70%",
     marginTop: "4rem",
@@ -92,25 +87,26 @@ const AccountsPage = () => {
           <table className="table table-scroll table-striped">
             <thead className="table-dark">
               <th>SrNO</th>
+              <th>userId</th>
               <th>Name</th>
               <th>Email</th>
               <th>Balance</th>
               <th></th>
             </thead>
             <tbody style={{ maxHeight: "90%", overflowY: "scroll" }}>
-              {accounts?.map((data) => (
+              {accounts?.map((data, idx) => (
                 <tr>
+                  <td>{idx + 1}</td>
                   <td>{data?.id}</td>
                   <td>{data?.name}</td>
                   <td>{data?.email}</td>
                   <td>{data?.balance}</td>
                   <td
+                    class="link-underline-dark"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
+                    style={{ cursor: "pointer", textDecoration: "underline" }}
                     onClick={() => {
-                      // const entries = Object.fromEntries(searchParams);
-                      // entries["userId"] = data.id;
-                      // setSearchParams(createSearchParams(entries));
                       handleClick(data?.id);
                     }}
                   >
@@ -140,11 +136,6 @@ const AccountsPage = () => {
                   class="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
-                  onClick={() => {
-                    const removeParams = new URLSearchParams(searchParams);
-                    removeParams.delete("userId");
-                    setSearchParams(removeParams);
-                  }}
                 ></button>
               </div>
               <div class="modal-body">
@@ -160,7 +151,7 @@ const AccountsPage = () => {
                     <tbody style={{ maxHeight: "90%", overflowY: "scroll" }}>
                       {transHistory?.map((data, idx) => (
                         <tr>
-                          <td>{data?.id}</td>
+                          <td>{idx + 1}</td>
                           <td>{data?.user_id}</td>
                           <td>{data?.amount}</td>
                           <td
