@@ -7,14 +7,16 @@ import { userRouter } from "./src/Router/userRouter.js";
 import { bankerRouter } from "./src/Router/bankerRouter.js";
 
 const PORT = process.env.PORT || 5000;
-const BASE_URL = process.env.BASE_URL;
+// const BASE_URL = process.env.BASE_URL;
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [`${BASE_URL}`],
+    origin: [
+      "https://656f020fdd5f5d0581ebd84d--strong-tanuki-9dc021.netlify.app",
+    ],
     credentials: true,
   })
 );
