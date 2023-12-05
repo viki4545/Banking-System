@@ -7,7 +7,7 @@ import { userRouter } from "./src/Router/userRouter.js";
 import { bankerRouter } from "./src/Router/bankerRouter.js";
 
 const PORT = process.env.PORT || 5000;
-// const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.BASE_URL;
 
 const app = express();
 app.use(express.json());
