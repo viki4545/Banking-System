@@ -6,19 +6,34 @@ const saltRounds = 10;
 
 const registerController = async (req, res, next) => {
   try {
+    const [rows] = await conn
+      .promise()
+      .execute("SELECT * FROM users WHERE email = ? AND usertype = ?", [
+        req.body.email,
+        req.body.usertype,
+      ]);
+    if (rows.length > 0) {
+      return res.json({ error: "Account already exists" });
+    }
     const sql =
       "INSERT INTO users (`name`, `email`, `password`, `usertype`) VALUES(?,?,?,?)";
-    bcrypt.hash(req.body.password.toString(), saltRounds, (err, hash) => {
+    bcrypt.hash(req.body.password.toString(), saltRounds, async (err, hash) => {
       if (err) {
         return res.json({ error: "Error in hashing password" });
       }
       const values = [req.body.name, req.body.email, hash, req.body.usertype];
-      const user = conn.promise().execute(sql, values);
-      if (user) {
-        return res.status(200).json({
-          status: "SUCCESS",
-        });
-      } else {
+      try {
+        const [user] = await conn.promise().execute(sql, values);
+        if (user) {
+          return res.status(200).json({
+            status: "SUCCESS",
+          });
+        } else {
+          return res.json({
+            error: "Error while inserting data into db",
+          });
+        }
+      } catch (error) {
         return res.json({
           error: "Error while inserting data into db",
         });

@@ -4,6 +4,7 @@ import Footer from "../Components/Footer";
 import axios from "axios";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Modal from "../Components/Modal.js";
+import { BASE_URL } from "../allConstant/constant.js";
 
 axios.defaults.withCredentials = true;
 
@@ -36,7 +37,7 @@ const TransactionPage = () => {
 
   const handleDelete = () => {
     axios
-      .get("http://localhost:5000/user/logout")
+      .get(`${BASE_URL}/user/logout`)
       .then((res) => {
         if (res.data.status === "SUCCESS") {
           navigate("/");
@@ -49,7 +50,7 @@ const TransactionPage = () => {
 
   const handleClick = () => {
     axios
-      .post("http://localhost:5000/user/getUserByEmail", {
+      .post(`${BASE_URL}/user/getUserByEmail`, {
         email: email,
         usertype: usertype,
       })
@@ -69,14 +70,14 @@ const TransactionPage = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/user/getUserByEmail", {
+      .post(`${BASE_URL}/user/getUserByEmail`, {
         email: email,
         usertype: usertype,
       })
       .then((res) => {
         if (res.data.status === "SUCCESS") {
           axios
-            .get(`http://localhost:5000/user/transaction/${res.data.user_id}`)
+            .get(`${BASE_URL}/user/transaction/${res.data.user_id}`)
             .then((res) => {
               if (res.data.status === "SUCCESS") {
                 const transactions = res.data.transactions;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../allConstant/constant";
 
 const Login = ({
   loginName,
@@ -17,19 +18,17 @@ const Login = ({
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(`http://localhost:5000/${linkType}/login`, values)
-      .then((res) => {
-        if (res.data.status === "SUCCESS") {
-          if (values.usertype == "User") {
-            navigate(`${navigationLink}/${values.email}/${values.usertype}`);
-          } else {
-            navigate(`${navigationLink}`);
-          }
+    axios.post(`${BASE_URL}/${linkType}/login`, values).then((res) => {
+      if (res.data.status === "SUCCESS") {
+        if (values.usertype == "User") {
+          navigate(`${navigationLink}/${values.email}/${values.usertype}`);
         } else {
-          alert(res.data.error);
+          navigate(`${navigationLink}`);
         }
-      });
+      } else {
+        alert(res.data.error);
+      }
+    });
   };
 
   return (

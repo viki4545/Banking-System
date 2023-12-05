@@ -4,6 +4,8 @@ import Footer from "../Components/Footer";
 import axios from "axios";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { BASE_URL } from "../allConstant/constant";
+
 axios.defaults.withCredentials = true;
 
 const AccountsPage = () => {
@@ -32,7 +34,7 @@ const AccountsPage = () => {
 
   const handleDelete = () => {
     axios
-      .get("http://localhost:5000/banker/logout")
+      .get(`${BASE_URL}/banker/logout`)
       .then((res) => {
         if (res.data.status === "SUCCESS") {
           navigate("/bankerLogin");
@@ -45,7 +47,7 @@ const AccountsPage = () => {
 
   const handleClick = (userId) => {
     axios
-      .get(`http://localhost:5000/banker/transactionHistory/${userId}`)
+      .get(`${BASE_URL}/banker/transactionHistory/${userId}`)
       .then((res) => {
         if (res.data.status === "SUCCESS") {
           setTransHistory(res.data.history);
@@ -60,7 +62,7 @@ const AccountsPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/banker/accounts")
+      .get(`${BASE_URL}/banker/accounts`)
       .then((res) => {
         if (res.data.status === "SUCCESS") {
           setAccounts(res.data.accounts);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../allConstant/constant";
 
 const Modal = ({ heading, modalId, linkType, userId, balance }) => {
   const [values, setValues] = useState({
@@ -11,7 +12,7 @@ const Modal = ({ heading, modalId, linkType, userId, balance }) => {
   console.log(balance);
   const handleSubmit = () => {
     axios
-      .post(`http://localhost:5000/user/${linkType}`, values)
+      .post(`${BASE_URL}/user/${linkType}`, values)
       .then((res) => {
         if (res.data.status === "SUCCESS") {
           let frm = document.getElementsByName("depositForm")[0];

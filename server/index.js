@@ -6,14 +6,15 @@ import connectDB from "./src/Config/conn.js";
 import { userRouter } from "./src/Router/userRouter.js";
 import { bankerRouter } from "./src/Router/bankerRouter.js";
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+const BASE_URL = process.env.BASE_URL;
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: `${BASE_URL}`,
     credentials: true,
   })
 );
@@ -28,6 +29,6 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/banker", bankerRouter);
 
-app.listen(5000, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
 });

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../allConstant/constant";
 
 const Signup = ({ accountLoginLink, userType, linkType, navigationLink }) => {
   const [values, setValues] = useState({
@@ -11,10 +12,9 @@ const Signup = ({ accountLoginLink, userType, linkType, navigationLink }) => {
   });
   const navigate = useNavigate();
   const handleSubmit = (e) => {
-    console.log(values);
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/${linkType}/register`, values)
+      .post(`${BASE_URL}/${linkType}/register`, values)
       .then((res) => {
         if (res.data.status === "SUCCESS") {
           navigate(`${navigationLink}`);
