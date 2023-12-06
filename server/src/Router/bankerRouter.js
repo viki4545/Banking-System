@@ -30,7 +30,7 @@ const verifyUser = (req, res, next) => {
 
 bankerRouter.post("/register", bankerRegisterController);
 bankerRouter.post("/login", bankerLoginController);
-bankerRouter.get("/logout", verifyUser, bankerLogoutController);
+bankerRouter.get("/logout", bankerLogoutController);
 bankerRouter.get("/accounts", verifyUser, accountsController);
 bankerRouter.get(
   "/transactionHistory/:userId",
