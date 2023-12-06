@@ -33,8 +33,8 @@ const verifyUser = (req, res, next) => {
 userRouter.post("/register", registerController);
 userRouter.post("/login", loginController);
 userRouter.get("/logout", logoutController);
-userRouter.post("/getUserByEmail", verifyUser, getUserByEmailController);
-userRouter.post("/deposit", verifyUser, depositController);
-userRouter.post("/withdraw", verifyUser, withdrawController);
-userRouter.get("/transaction/:userId", verifyUser, transactionController);
+userRouter.post("/getUserByEmail", getUserByEmailController);
+userRouter.post("/deposit", depositController);
+userRouter.post("/withdraw", withdrawController);
+userRouter.get("/transaction/:userId", transactionController);
 export { userRouter };

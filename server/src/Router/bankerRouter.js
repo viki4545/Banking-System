@@ -31,11 +31,7 @@ const verifyUser = (req, res, next) => {
 bankerRouter.post("/register", bankerRegisterController);
 bankerRouter.post("/login", bankerLoginController);
 bankerRouter.get("/logout", bankerLogoutController);
-bankerRouter.get("/accounts", verifyUser, accountsController);
-bankerRouter.get(
-  "/transactionHistory/:userId",
-  verifyUser,
-  transactionHistoryController
-);
+bankerRouter.get("/accounts", accountsController);
+bankerRouter.get("/transactionHistory/:userId", transactionHistoryController);
 
 export { bankerRouter };
