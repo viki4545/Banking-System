@@ -7,4 +7,5 @@
 [[headers]]
 for = "/*"
   [headers.values]
-    Set-Cookie = "Secure; SameSite=Strict"  
+    Set-Cookie = "Secure; 
+    SameSite=None"  
