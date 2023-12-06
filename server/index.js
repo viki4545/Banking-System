@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin:
-      "https://657035ac9779844b8c61e266--delightful-toffee-5a8d1a.netlify.app/",
+      "https://657035ac9779844b8c61e266--delightful-toffee-5a8d1a.netlify.app",
   })
 );
 app.use(cookieParser());
