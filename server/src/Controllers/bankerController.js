@@ -66,18 +66,10 @@ const bankerLoginController = (req, res, next) => {
                   expiresIn: "1d",
                 }
               );
-              res
-                .status(200)
-                .cookie("token", token, {
-                  secure: false,
-                  httpOnly: true,
-                  sameSite: "lax",
-                  path: "/",
-                  overwrite: true,
-                })
-                .json({
-                  status: "SUCCESS",
-                });
+              res.cookie("token", token);
+              return res.status(200).json({
+                status: "SUCCESS",
+              });
             } else {
               return res.json({
                 error: "Password doesn't matched",

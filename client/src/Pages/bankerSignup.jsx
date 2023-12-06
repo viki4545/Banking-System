@@ -11,7 +11,7 @@ const BankerSignup = () => {
         accountLoginLink={"/bankerLogin"}
         userType={"Banker"}
         linkType={"banker"}
-        navigationLink={"/accountsPage"}
+        navigationLink={"/bankerLogin"}
       />
       <Footer />
     </>
