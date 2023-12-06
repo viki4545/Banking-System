@@ -27,8 +27,8 @@ app.get("/", (req, res) => {
   res.status(200).json({ data: "ok" });
 });
 
-app.use("user", userRouter);
-app.use("banker", bankerRouter);
+app.use("/user", userRouter);
+app.use("/banker", bankerRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
